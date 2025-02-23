@@ -10,8 +10,8 @@ app = Flask(__name__)
 JSON_FILE = "participants.json"
 CSV_FILE = "participants.csv"
 PORT = int(os.environ.get("PORT", 5000))
-GITHUB_REPO = os.environ.get("https://github.com/Ash-Geek8/Consent-form/")  # GitHub repository URL
-GITHUB_TOKEN = os.environ.get("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")  # GitHub token for authentication
+GITHUB_REPO = "https://github.com/Ash-Geek8/Consent-form/"  # GitHub repository URL
+GITHUB_TOKEN = "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"  # GitHub token for authentication
 
 def load_data():
     if os.path.exists(JSON_FILE):
