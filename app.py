@@ -2,16 +2,19 @@ from flask import Flask, render_template, request, redirect, url_for
 import json
 import csv
 import os
-import requests
-import base64
 from datetime import datetime, date
+from pydrive.auth import GoogleAuth
+from pydrive.drive import GoogleDrive
 
 app = Flask(__name__)
 JSON_FILE = "participants.json"
 CSV_FILE = "participants.csv"
-PORT = 5000 #int(os.environ.get("PORT", 5000))
-GITHUB_REPO = "https://github.com/Ash-Geek8/Consent-form/"  # GitHub repository URL
-GITHUB_TOKEN = "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"  # GitHub token for authentication
+PORT = 5000  # Default Flask port
+
+# Authenticate Google Drive
+gauth = GoogleAuth()
+gauth.LocalWebserverAuth()  # Opens a browser for authentication
+drive = GoogleDrive(gauth)
 
 def load_data():
     if os.path.exists(JSON_FILE):
@@ -23,7 +26,7 @@ def load_data():
 def save_data(data):
     with open(JSON_FILE, "w") as file:
         json.dump(data, file, indent=4)
-    upload_to_github(JSON_FILE)
+    upload_to_drive(JSON_FILE)
 
 def save_to_csv():
     data = load_data()
@@ -33,38 +36,17 @@ def save_to_csv():
         for entry in data:
             formatted_date = datetime.strptime(entry["consent_date"], "%Y-%m-%d").strftime("%d-%m-%Y")
             writer.writerow([entry["full_name"], entry["email"], entry["phone_number"], formatted_date])
-    upload_to_github(CSV_FILE)
+    upload_to_drive(CSV_FILE)
 
-def upload_to_github(filename):
-    if not GITHUB_REPO or not GITHUB_TOKEN:
-        print("GitHub repository or token not set.")
-        return
-    
-    with open(filename, "rb") as file:
-        content = base64.b64encode(file.read()).decode("utf-8")
-    
-    url = f"https://api.github.com/repos/{GITHUB_REPO}/contents/{filename}"
-    headers = {
-        "Authorization": f"Bearer {GITHUB_TOKEN}",
-        "Accept": "application/vnd.github.v3+json"
-    }
-    
-    response = requests.get(url, headers=headers)
-    sha = response.json().get("sha", "") if response.status_code == 200 else ""
-    
-    data = {
-        "message": f"Update {filename}",
-        "content": content
-    }
-    
-    if sha:
-        data["sha"] = sha  # Include SHA only when updating an existing file
-    
-    put_response = requests.put(url, headers=headers, json=data)
-    if put_response.status_code in [200, 201]:
-        print(f"Successfully uploaded {filename} to GitHub.")
-    else:
-        print(f"Failed to upload {filename}. Response: {put_response.text}")
+def upload_to_drive(filename):
+    """Upload the given file to Google Drive"""
+    try:
+        file_drive = drive.CreateFile({'title': filename})
+        file_drive.SetContentFile(filename)
+        file_drive.Upload()
+        print(f"Successfully uploaded {filename} to Google Drive.")
+    except Exception as e:
+        print(f"Failed to upload {filename}. Error: {e}")
 
 @app.route("/", methods=["GET", "POST"])
 def consent_form():
