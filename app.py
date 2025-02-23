@@ -9,15 +9,15 @@ from datetime import datetime, date
 app = Flask(__name__)
 JSON_FILE = "participants.json"
 CSV_FILE = "participants.csv"
-PORT = int(os.environ.get("PORT", 5000))
+PORT = 5000 #int(os.environ.get("PORT", 5000))
 GITHUB_REPO = "https://github.com/Ash-Geek8/Consent-form/"  # GitHub repository URL
 GITHUB_TOKEN = "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"  # GitHub token for authentication
 
 def load_data():
     if os.path.exists(JSON_FILE):
-        content = JSON_FILE.read()
         with open(JSON_FILE, "r") as file:
-            return json.load(file)  if content.strip() else []
+            content = file.read().strip()  # Read and remove whitespace
+            return json.loads(content) if content else []  # Load JSON if not empty
     return []
 
 def save_data(data):
