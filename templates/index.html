@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Consent Form</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>Consent Form for Participation in Research</h1>
+      <h2>AI-Driven Postural Abnormality Management Among Desk Job Workers -<br> A Quasi Experimental Study</h2>
+      <p><strong>Investigator:</strong> Akash B, PG Scholar, Department of Epidemology, The Tamil Nadu Dr. M.G.R. Medical University, Chennai.</p>
+    </div>
+
+    <div class="content">
+      <p>Thank you for considering participation in this study. The primary objective of this study is to identify posture abnormalities using AI-driven technology and a goniometer. Based on your assessment, specific exercises will be recommended to improve posture, and you will be reassessed after a period of time to evaluate the effectiveness of these interventions.</p>
+      
+      <p>Your participation in this research will involve an initial assessment to measure the range of motion at key joints using topological landmarks to evaluate your posture. Based on the results, a physiotherapist will provide you with a physiotherapy exercise protocol to improve your posture. After completing the exercises, you will be invited for a follow-up assessment to evaluate the effectiveness of the exercises and track changes in your posture over time.</p>
+
+      <p>Your participation is voluntary, and all information provided will be kept strictly confidential. No images or videos of your posture will be stored. During the assessment, only the position of specific anatomical landmarks will be detected, and range of motion measurements will be recorded. Only the maximum values of these measurements will be stored for research and evaluation purposes. Personal information such as your name, contact details, and assessment results will not be shared or disclosed to any third party.</p>
+
+      <p><i>Potential Risks and Discomforts :</i> There are minimal risks associated with this study. You may feel discomfort during the postural assessments, but this is typically minimal and temporary.</p>
+
+      <p>If you have any questions regarding the study or your participation, feel free to contact:</p>
+      <p><strong>Akash B</strong><br>PG Scholar, Department of Epidemology<br>Phone: <a href="tel:+91 90435 20998" style="text-decoration: none;color: inherit;">+91 90435 20998</a></p>
+
+      <p>By agreeing to participate in this study, you consent to the following:</p>
+      <ul>
+        <li>Undergoing the initial postural assessment.</li>
+        <li>Following the prescribed exercise protocol for posture improvement.</li>
+        <li>Participating in a follow-up assessment to evaluate the effectiveness of the intervention.</li>
+      </ul>
+      <p>Please ensure that you have read the full consent form and understand the procedures involved. Your participation is greatly appreciated and will contribute to valuable research in the area of postural health among IT professionals.</p>
+
+      <form method="POST">
+        <label for="name">Full Name:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="phone">Phone Number:</label>
+        <input type="tel" id="phone" name="phone" required>
+
+
+        <label for="agreement">
+          <input type="checkbox" id="agreement" name="agreement" required>
+          I have read all the information and agree to participate in this study.
+        </label>
+
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+
+    <div class="footer">
+      <p>&copy; 2025 The Tamil Nadu Dr. M.G.R. Medical University, Chennai. All Rights Reserved.</p>
+    </div>
+  </div>
+</body>
+</html>
