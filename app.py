@@ -44,7 +44,7 @@ def upload_to_github(filename):
     
     url = f"https://api.github.com/repos/{GITHUB_REPO}/contents/{filename}"
     headers = {
-        "Authorization": f"token {GITHUB_TOKEN}",
+        "Authorization": f"Bearer {GITHUB_TOKEN}",
         "Accept": "application/vnd.github.v3+json"
     }
     
