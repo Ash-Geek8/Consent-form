@@ -16,7 +16,7 @@ GITHUB_TOKEN = "github_pat_11A2DIFYY00i6CGwWOEK5R_GJlyX8YO1ermMu0Fsr9WPkjQrQjwZB
 def load_data():
     if os.path.exists(JSON_FILE):
         with open(JSON_FILE, "r") as file:
-            return json.load(file)
+            return json.load(file)  if content.strip() else []
     return []
 
 def save_data(data):
