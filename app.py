@@ -11,7 +11,7 @@ JSON_FILE = "participants.json"
 CSV_FILE = "participants.csv"
 PORT = 5000 #int(os.environ.get("PORT", 5000))
 GITHUB_REPO = "https://github.com/Ash-Geek8/Consent-form/"  # GitHub repository URL
-GITHUB_TOKEN = "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"  # GitHub token for authentication
+GITHUB_TOKEN = "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"  # GitHub token for authentication
 
 def load_data():
     if os.path.exists(JSON_FILE):
