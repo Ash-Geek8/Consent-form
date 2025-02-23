@@ -13,7 +13,7 @@ PORT = 5000  # Default Flask port
 
 # Authenticate Google Drive
 gauth = GoogleAuth()
-gauth.LocalWebserverAuth()  # Opens a browser for authentication
+gauth.CommandLineAuth()  # Opens a browser for authentication
 drive = GoogleDrive(gauth)
 
 def load_data():
