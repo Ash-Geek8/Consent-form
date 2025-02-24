@@ -22,7 +22,7 @@
   
   .header h1 {
     text-align: center;
-    color: #4CAF50;
+    color: #0075a2;
     font-size: 2.5em;
   }
   
@@ -43,7 +43,7 @@
   }
   
   h3 {
-    color: #4CAF50;
+    color: #0075a2;
     font-size: 1.3em;
     margin-bottom: 10px;
   }
@@ -84,7 +84,7 @@
   }
   
   button {
-    background-color: #4CAF50;
+    background-color: #0075a2;
     color: #fff;
     padding: 12px 20px;
     border: none;
